@@ -8,9 +8,12 @@ import { TodosLoading } from '../TodosLoading';
 import { TodosError } from '../TodosError';
 import { TodosEmpty } from '../TodosEmpty';
 import { useTodoContext } from '../../context/useTodoContext';
+import { Modal } from '../Modal';
+import { TodoForm } from '../TodoForm';
 
 export const AppUI = (): React.JSX.Element => {
-  const { error, isLoading, searchedTodos, todos } = useTodoContext();
+  const { error, isLoading, searchedTodos, todos, isOpenModal } =
+    useTodoContext();
   return (
     <>
       <TodoCounter />
@@ -29,9 +32,10 @@ export const AppUI = (): React.JSX.Element => {
           <TodosEmpty message="¡Crea tu primer TODO!" />
         )}
 
-        {!error && !isLoading && searchedTodos.length === 0 && todos.length > 0 && (
-          <TodosEmpty message="No hay coincidencias" />
-        )}
+        {!error &&
+          !isLoading &&
+          searchedTodos.length === 0 &&
+          todos.length > 0 && <TodosEmpty message="No hay coincidencias" />}
 
         {searchedTodos.map((todo) => (
           <TodoItem
@@ -42,6 +46,11 @@ export const AppUI = (): React.JSX.Element => {
         ))}
       </TodoList>
       <CreateTodoButton />
+      {isOpenModal && (
+        <Modal>
+          <TodoForm />
+        </Modal>
+      )}
     </>
   );
 };

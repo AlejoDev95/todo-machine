@@ -11,7 +11,10 @@ type ContextTodo = {
   totalTodos: number;
   isLoading: boolean;
   error: boolean;
-  todos: Todo[]
+  todos: Todo[];
+  isOpenModal: boolean;
+  setIsOpenModal: (value: boolean) => void,
+  addTodo: (text: string) => void
 };
 
 const contextValue: ContextTodo = {
@@ -25,6 +28,9 @@ const contextValue: ContextTodo = {
   totalTodos: 0,
   isLoading: true,
   error: false,
+  isOpenModal: false,
+  setIsOpenModal: () => undefined,
+  addTodo: () => undefined
 };
 
 export const TodoContext = createContext<ContextTodo>(contextValue);

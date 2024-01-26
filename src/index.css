@@ -5,6 +5,16 @@ body {
   font-family: "Montserrat", Arial, Helvetica, sans-serif;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
 #root {
   margin: 0 24px;
   position: relative;

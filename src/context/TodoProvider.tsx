@@ -16,6 +16,7 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
   } = useLocalstorage<Todo[]>('Todo_v1', []);
 
   const [searchValue, setSearchValue] = useState('');
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
 
@@ -41,6 +42,12 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
     saveTodos(newTodos);
   };
 
+  const addTodo = (text: string) => {
+    const newTodo: Todo = { text, completed: false };
+    const listOfTodos = [...todos, newTodo];
+    saveTodos(listOfTodos);
+  };
+
   return (
     <TodoContext.Provider
       value={{
@@ -54,6 +61,9 @@ export const TodoProvider = ({ children }: TodoProviderProps) => {
         totalTodos,
         isLoading,
         error,
+        isOpenModal,
+        setIsOpenModal,
+        addTodo,
       }}
     >
       {children}

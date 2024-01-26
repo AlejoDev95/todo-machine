@@ -15,11 +15,15 @@
   align-items: center;
   height: 64px;
   width: 64px;
-
-  transition: rotate(0);
-  transition: .3s ease;
+  transition-property: background-color transform;
+  transition-duration: .3s;
+  z-index: 20;
 }
 
 .CreateTodoButton:hover {
-  transform: rotate(224deg);
+  background-color: hsl(193, 94%, 75%);
+}
+
+.CreateTodoButton--open-modal {
+  transform: rotate(-45deg);
 }
