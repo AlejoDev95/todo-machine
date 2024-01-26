@@ -31,10 +31,10 @@ export const App = (): React.JSX.Element => {
     return todoText.includes(searchText);
   });
 
-  const completeTodo = (text: string) => {
+  const toggleCompleteTodo = (text: string) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
-    newTodos[todoIndex].completed = true;
+    newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
     setTodos(newTodos);
   };
 
@@ -55,7 +55,7 @@ export const App = (): React.JSX.Element => {
             text={todo.text}
             completed={todo.completed}
             key={todo.text}
-            onComplete={() => completeTodo(todo.text)}
+            onToggleComplete={() => toggleCompleteTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
         ))}

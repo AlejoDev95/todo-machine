@@ -1,9 +1,11 @@
 import React from 'react';
 import { Todo } from './App';
 import './TodoItem.css';
+import { CompleteIcon } from './CompleteIcon';
+import { DeleteIcon } from './DeleteIcon';
 
 type TodoItemProp = {
-  onComplete: () => void;
+  onToggleComplete: () => void;
   onDelete: () => void;
 };
 
@@ -12,23 +14,16 @@ type Props = Todo & TodoItemProp;
 export const TodoItem = ({
   text,
   completed,
-  onComplete,
+  onToggleComplete,
   onDelete,
 }: Props): React.JSX.Element => {
   return (
     <li className="TodoItem">
-      <button
-        onClick={onComplete}
-        className={`Icon Icon-check ${completed && 'Icon-check--active'}`}
-      >
-        V
-      </button>
+      <CompleteIcon completed={completed} onToggleComplete={onToggleComplete} />
       <p className={`TodoItem-p ${completed && 'TodoItem-p--complete'}`}>
         {text}
       </p>
-      <button onClick={onDelete} className="Icon Icon-delete">
-        X
-      </button>
+      <DeleteIcon onDelete={onDelete} />
     </li>
   );
 };

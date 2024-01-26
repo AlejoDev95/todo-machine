@@ -23,36 +23,3 @@
 .TodoItem-button {
   border: none;
 }
-
-.Icon {
-  background: transparent;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 24px;
-  width: 24px;
-  font-weight: bold;
-  border: 0.5px solid black;
-  border-radius: 50%;
-  font-size: 18px;
-}
-
-.Icon-check {
-  position: absolute;
-  left: 12px;
-}
-
-.Icon-check--active {
-  color: #4caf50;
-}
-
-.Icon-delete {
-  position: absolute;
-  top: -15px;
-  right: -10px;
-}
-
-.Icon-delete:hover {
-  color: red;
-}
