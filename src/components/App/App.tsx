@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import { CreateTodoButton } from './CreateTodoButton';
-import { TodoCounter } from './TodoCounter';
-import { TodoItem } from './TodoItem';
-import { TodoList } from './TodoList';
-import { TodoSearch } from './TodoSearch';
-import { useLocalstorage } from './useLocalstorage';
 
-export type Todo = {
-  text: string;
-  completed: boolean;
-};
+import { useLocalstorage } from '../../hooks/useLocalstorage';
+import { Todo } from '../../models/todo.model';
+import { AppUI } from './AppUI';
 
 const listOfTodos: Todo[] = [
   { text: 'Estudiar React', completed: false },
@@ -47,21 +40,14 @@ export const App = (): React.JSX.Element => {
   };
 
   return (
-    <>
-      <TodoCounter completed={completedTodos} total={totalTodos} />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      <TodoList>
-        {searchedTodos.map((todo) => (
-          <TodoItem
-            text={todo.text}
-            completed={todo.completed}
-            key={todo.text}
-            onToggleComplete={() => toggleCompleteTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList>
-      <CreateTodoButton />
-    </>
+    <AppUI
+      completedTodos={completedTodos}
+      deleteTodo={deleteTodo}
+      searchedTodos={searchedTodos}
+      searchValue={searchValue}
+      setSearchValue={setSearchValue}
+      toggleCompleteTodo={toggleCompleteTodo}
+      totalTodos={totalTodos}
+    />
   );
 };

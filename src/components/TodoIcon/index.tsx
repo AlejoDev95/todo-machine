@@ -1,6 +1,6 @@
 import React from 'react';
-import { ReactComponent as CheckSVG } from './assets/icons/check.svg';
-import { ReactComponent as DeleteSVG } from './assets/icons/delete.svg';
+import { ReactComponent as CheckSVG } from './../../assets/icons/check.svg';
+import { ReactComponent as DeleteSVG } from './../../assets/icons/delete.svg';
 import './TodoIcon.css';
 
 type TodoIconProp = {
