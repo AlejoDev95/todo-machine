@@ -4,6 +4,7 @@ import { TodoCounter } from './TodoCounter';
 import { TodoItem } from './TodoItem';
 import { TodoList } from './TodoList';
 import { TodoSearch } from './TodoSearch';
+import { useLocalstorage } from './useLocalstorage';
 
 export type Todo = {
   text: string;
@@ -18,7 +19,7 @@ const listOfTodos: Todo[] = [
 ];
 
 export const App = (): React.JSX.Element => {
-  const [todos, setTodos] = useState(listOfTodos);
+  const [todos, saveTodos] = useLocalstorage<Todo[]>('Todo_v1', listOfTodos);
   const [searchValue, setSearchValue] = useState('');
 
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
@@ -35,15 +36,15 @@ export const App = (): React.JSX.Element => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     newTodos[todoIndex].completed = !newTodos[todoIndex].completed;
-    setTodos(newTodos);
+    saveTodos(newTodos);
   };
 
   const deleteTodo = (text: string) => {
     const newTodos = [...todos];
-    const todoIndex = newTodos.findIndex(todo => todo.text === text);
+    const todoIndex = newTodos.findIndex((todo) => todo.text === text);
     newTodos.splice(todoIndex, 1);
-    setTodos(newTodos);
-  }
+    saveTodos(newTodos);
+  };
 
   return (
     <>
