@@ -1,18 +1,12 @@
 import React from 'react';
 import './TodoCounter.css';
+import { useTodoContext } from '../../context/useTodoContext';
 
-type TodoCounterProps = {
-  total: number;
-  completed: number;
-};
-
-export const TodoCounter = ({
-  total,
-  completed,
-}: TodoCounterProps): React.JSX.Element => {
+export const TodoCounter = (): React.JSX.Element => {
+  const { totalTodos, completedTodos } = useTodoContext()
   return (
-    <h1 className='TodoCounter'>
-      Haz completado {completed} de {total} Todos
+    <h1 className="TodoCounter">
+      Haz completado {completedTodos} de {totalTodos} Todos
     </h1>
   );
 };

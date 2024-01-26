@@ -2,8 +2,12 @@
 import { useEffect, useState } from 'react';
 
 const getStorageValue = <T>(key: string, defaultValue: T): T => {
-  const saved = localStorage.getItem(key) ?? '';
-  return JSON.parse(saved) ?? defaultValue;
+  const saved = localStorage.getItem(key);
+  if(saved) {
+    return JSON.parse(saved) ?? defaultValue;
+  }
+  localStorage.setItem(key, JSON.stringify(defaultValue))
+  return defaultValue;
 };
 
 export const useLocalstorage = <T>(itemName: string, initialValue: T) => {

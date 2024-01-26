@@ -3,27 +3,18 @@ import { Todo } from '../../models/todo.model';
 import { CompleteIcon } from '../TodoIcon/CompleteIcon';
 import { DeleteIcon } from '../TodoIcon/DeleteIcon';
 import './TodoItem.css';
+import { useTodoContext } from '../../context/useTodoContext';
 
-type TodoItemProp = {
-  onToggleComplete: () => void;
-  onDelete: () => void;
-};
-
-type Props = Todo & TodoItemProp;
-
-export const TodoItem = ({
-  text,
-  completed,
-  onToggleComplete,
-  onDelete,
-}: Props): React.JSX.Element => {
+export const TodoItem = ({ text, completed }: Todo): React.JSX.Element => {
+  const { toggleCompleteTodo, deleteTodo } =
+  useTodoContext()
   return (
     <li className="TodoItem">
-      <CompleteIcon completed={completed} onToggleComplete={onToggleComplete} />
+      <CompleteIcon completed={completed} onToggleComplete={() => toggleCompleteTodo(text)} />
       <p className={`TodoItem-p ${completed && 'TodoItem-p--complete'}`}>
         {text}
       </p>
-      <DeleteIcon onDelete={onDelete} />
+      <DeleteIcon onDelete={() => deleteTodo(text)} />
     </li>
   );
 };

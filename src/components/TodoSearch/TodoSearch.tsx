@@ -1,15 +1,9 @@
 import React from 'react';
+import { useTodoContext } from '../../context/useTodoContext';
 import './TodoSearch.css';
 
-type TodoSearchProps = {
-  searchValue: string;
-  setSearchValue: (value: string) => void;
-};
-
-export const TodoSearch = ({
-  searchValue,
-  setSearchValue,
-}: TodoSearchProps): React.JSX.Element => {
+export const TodoSearch = (): React.JSX.Element => {
+  const { searchValue, setSearchValue } = useTodoContext()
   return (
     <input
       className="TodoSearch"
