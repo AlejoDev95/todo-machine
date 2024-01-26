@@ -4,15 +4,11 @@ import { useLocalstorage } from '../../hooks/useLocalstorage';
 import { Todo } from '../../models/todo.model';
 import { AppUI } from './AppUI';
 
-const listOfTodos: Todo[] = [
-  { text: 'Estudiar React', completed: false },
-  { text: 'Repasar Angular', completed: false },
-  { text: 'Sacar a coco', completed: true },
-  { text: 'Leer un libro', completed: false },
-];
-
 export const App = (): React.JSX.Element => {
-  const [todos, saveTodos] = useLocalstorage<Todo[]>('Todo_v1', listOfTodos);
+  const { item: todos, saveItem: saveTodos, isLoading, error } = useLocalstorage<Todo[]>(
+    'Todo_v1',
+    []
+  );
   const [searchValue, setSearchValue] = useState('');
 
   const completedTodos = todos.filter((todo) => !!todo.completed).length;
@@ -48,6 +44,8 @@ export const App = (): React.JSX.Element => {
       setSearchValue={setSearchValue}
       toggleCompleteTodo={toggleCompleteTodo}
       totalTodos={totalTodos}
+      isLoading={isLoading}
+      error={error}
     />
   );
 };
